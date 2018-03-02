@@ -5,7 +5,7 @@ require_relative 'model/service.rb'
 require_relative 'model/message.rb'
 require 'rexml/document'
 require 'mustache'
-require 'active_support/inflector'
+#require 'activesupport-inflector'
 
 ##################################
 # XML Definition File Reader
