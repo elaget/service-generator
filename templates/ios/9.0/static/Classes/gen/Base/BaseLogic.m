@@ -105,6 +105,15 @@
     return nil;
 }
 
+- (NSError*) manageError:(AFHTTPRequestOperation*)operation error:(NSError*)error {
+    NSMutableDictionary* mDictionary = [error.userInfo mutableCopy];
+    if (operation.responseString) {
+       [mDictionary setObject:operation.responseString forKey:@"responseString"];
+    }
+    [mDictionary setObject:[NSNumber numberWithInteger:operation.response.statusCode] forKey:@"responseStatusCode"];
+    return [NSError errorWithDomain:error.domain code:error.code userInfo:mDictionary];
+}
+
 - (NSString *)fixURLParameter:(NSString *)param {
     return(NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(
                                                                                 NULL,

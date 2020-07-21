@@ -327,14 +327,8 @@
 
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 
-	    {{response.name}} *dto=[self {{method}}DTOFromOperation:operation withError:nil];
-		if(dto)
-		{
-	        if (onSuccess) {
-	            onSuccess(operation.response.statusCode,dto);
-	        }
-		}
-		else if (onError) {
+	    if (onError) {
+			error = [self manageError:operation error:error];
 			onError(error);
 		}
 	}];
