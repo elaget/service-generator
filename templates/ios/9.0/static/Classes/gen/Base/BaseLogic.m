@@ -110,7 +110,9 @@
     if (operation.responseString) {
        [mDictionary setObject:operation.responseString forKey:@"responseString"];
     }
-    [mDictionary setObject:[NSNumber numberWithInteger:operation.response.statusCode] forKey:@"responseStatusCode"];
+    if (operation.response) {
+       [mDictionary setObject:[NSNumber numberWithInteger:operation.response.statusCode] forKey:@"responseStatusCode"];
+    }
     return [NSError errorWithDomain:error.domain code:error.code userInfo:mDictionary];
 }
 
