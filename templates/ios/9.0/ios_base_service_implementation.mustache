@@ -299,7 +299,6 @@
 
 	if ([operation respondsToSelector:@selector(setSecurityPolicy:)]) {
 		AFSecurityPolicy *securityPolicy = [[AFSecurityPolicy alloc] init];
-		securityPolicy.allowInvalidCertificates = YES;
 		securityPolicy = [self preprocessSecurityPolicy:securityPolicy  onService:@"{{{serviceName}}}" onMethod:@"{{{method}}}"];
 		operation.securityPolicy = securityPolicy;
 	}
